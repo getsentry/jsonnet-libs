@@ -9,7 +9,7 @@ from typing import Tuple
 from typing import TypeVar
 from typing import Union
 
-from sentry_jsonnet.jsonish import JSONish
+from jsonish import JSONish
 
 JsonnetSnippet = str
 VarName = str
@@ -141,10 +141,10 @@ def jsonnet(
     if native_callbacks is None:
         native_callbacks = {}
 
-    import _jsonnet
+    import _gojsonnet
 
     if src is None:
-        result = _jsonnet.evaluate_file(
+        result = _gojsonnet.evaluate_file(
             _filename,
             _jpathdir,  # XXX: unused when passing import_callback
             max_stack,
@@ -159,7 +159,7 @@ def jsonnet(
             native_callbacks,
         )
     else:
-        result = _jsonnet.evaluate_snippet(
+        result = _gojsonnet.evaluate_snippet(
             _filename,
             src,
             _jpathdir,  # XXX: unused when passing import_callback
@@ -178,6 +178,3 @@ def jsonnet(
     import json
 
     return json.loads(result)
-
-
-__all__ = ("jsonnet", "default_import_callback")

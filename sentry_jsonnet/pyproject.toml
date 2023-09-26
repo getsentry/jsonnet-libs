@@ -2,8 +2,9 @@
 requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
-packages = ["sentry_jsonnet", "typings"]
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["test"]
 
 [project]
 dynamic = ["dependencies"]
@@ -18,10 +19,7 @@ classifiers = [
 ]
 
 [tool.setuptools.dynamic]
-dependencies = {file = ["requirements.txt"]}
-
-[tool.setuptools.package-data]
-typings = ["_jsonnet.pyi"]
+dependencies = {file = ["requirements.in"]}
 
 [tool.black]
 line-length = 79
@@ -80,6 +78,7 @@ exclude = [
     "**/trash",
 ]
 extraPaths = [
+  "src",
   ".venv/lib/*/site-packages/",
 ]
 

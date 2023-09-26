@@ -25,6 +25,7 @@ NULL: JSONish = typing.cast(JSONish, None)
 
 
 def recurse(json: JSONish, normalizers: Sequence[JSONNormalizer]) -> JSONish:
+    """Run normalization function(s) on jsonish data, recursively."""
     root = [json]
 
     Stack = List[
@@ -67,7 +68,8 @@ def recurse(json: JSONish, normalizers: Sequence[JSONNormalizer]) -> JSONish:
     return root[0]
 
 
-def main():
+def main() -> None:
+    """A little self-test."""
     import json
     import sys
 

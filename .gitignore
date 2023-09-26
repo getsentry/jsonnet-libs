@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# dirty hacks
+tmp*
+*tmp
+*bak
+**/trash
+
 # C extensions
 *.so
 
