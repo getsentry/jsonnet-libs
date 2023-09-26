@@ -48,4 +48,5 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
       - name: Run tests
+        working-directory: ./binding
         run: py.test .
