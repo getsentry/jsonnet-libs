@@ -1,0 +1,52 @@
+name: CI for the python packages
+on:
+  push:
+    branches:
+      - main
+      - release/**
+    paths:
+      - binding/**
+  pull_request:
+    paths:
+      - binding/**
+
+jobs:
+  linting:
+    name: "Run linters"
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout code
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        working-directory: ./binding
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run linter
+        working-directory: ./binding
+        run: |
+          black sentry_jsonnet
+          flake8 sentry_jsonnet
+  tests:
+    name: "Run tests"
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 3
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout code
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        working-directory: ./binding
+        run: |
+          pip install -r requirements.txt
+          pip install pytest
+      - name: Run tests
+        working-directory: ./binding
+        run: py.test .

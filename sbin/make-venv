@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euo pipefail
+REPO_TOP="$(cd "$(dirname "$0")/.."; pwd)"
+LIB_PATH="$REPO_TOP/$1"
+PATH="$PATH:$REPO_TOP/sbin"
+VENV_PATH="$LIB_PATH/.venv"
+
+trap 'make-invalid $LIB_PATH/requirements.txt' ERR
+set -x
+
+python -m venv "$VENV_PATH"
+"$VENV_PATH"/bin/pip install -r "$LIB_PATH"/requirements.txt
+touch "$LIB_PATH/requirements.txt"
