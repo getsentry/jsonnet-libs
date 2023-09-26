@@ -71,11 +71,15 @@ class DescribeRecurse:
     def it_can_take_multiple_passes(self):
         json: JSONish = {".": [0, 1, [[2, 3], 4, 5], 6], "x": -1}
         expected = [[".", [7, [6, 5, [4, 3]], 2, 1]], ["x", 0]]
-        actual = recurse(json, [jsonish_reverse, jsonish_pairs, jsonish_add_one])
+        actual = recurse(
+            json, [jsonish_reverse, jsonish_pairs, jsonish_add_one]
+        )
         assert actual == expected
 
     def it_takes_passes_in_order(self):
         json: JSONish = {".": [0, 1, [[2, 3], 4, 5], 6], "x": -1}
         expected = [["x", 0], [".", [7, [6, 5, [4, 3]], 2, 1]]]
-        actual = recurse(json, [jsonish_pairs, jsonish_reverse, jsonish_add_one])
+        actual = recurse(
+            json, [jsonish_pairs, jsonish_reverse, jsonish_add_one]
+        )
         assert actual == expected
