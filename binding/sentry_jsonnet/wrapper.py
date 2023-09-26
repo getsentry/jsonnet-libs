@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable, Dict, Sequence, Tuple, TypeVar, Union
 
-from binding.jsonish import JSONish
+from sentry_jsonnet.jsonish import JSONish
 
 JsonnetSnippet = str
 VarName = str

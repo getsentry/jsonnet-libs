@@ -1,0 +1,102 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["sentry_jsonnet", "typings"]
+
+[project]
+name = "sentry-jsonnet"
+version = "0.0.1"
+description = "Sentry wrapper to the go-jsonnet library"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[tool.setuptools.package-data]
+typings = ["_jsonnet.pyi"]
+
+[tool.black]
+line-length = 79
+target-version = ['py38']
+skip-magic-trailing-comma = true
+
+[tool.isort]
+profile = "black"
+line_length = 79
+use_parentheses = true
+force_single_line = true
+multi_line_output = 3
+include_trailing_comma = true
+add_imports=[
+  "from __future__ import annotations",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+markers = ["slow_integration"]
+addopts = "--durations=3 -vv --doctest-modules"
+testpaths = ["."]
+norecursedirs = [
+    # runtime-only deps
+    "**/vendor",  # jsonnet-bundle symlinks
+    "**/venv",
+
+    # cache files
+    "**/__pycache__",
+    "**/.*",
+
+    # dirty hacks
+    "tmp*",
+    "*tmp",
+    "*bak",
+    "**/trash",
+]
+python_files = ["*.py"]
+python_classes = ["Test", "Describe"]
+python_functions = ["test_", "it_"]
+enable_assertion_pass_hook = true
+
+[tool.pyright]
+include = ["."]
+exclude = [
+    "**/.venv",
+
+    # cache files
+    "**/__pycache__",
+    "**/.*",
+
+    # dirty hacks
+    "tmp*",
+    "*tmp",
+    "*bak",
+    "**/trash",
+]
+extraPaths = [
+  ".venv/lib/*/site-packages/",
+]
+
+pythonPlatform = "Linux"
+pythonVersion = "3.8"
+
+typeCheckingMode = "strict"
+
+# don't flag arguments as long as its type is known
+reportMissingParameterType = "none"
+reportUnknownParameterType = "error"
+
+# turn on all the checks not already enabled by "strict":
+reportCallInDefaultInitializer = "error"
+reportImplicitStringConcatenation = "error"
+reportMissingSuperCall = "error"
+reportPropertyTypeMismatch = "error"
+reportUninitializedInstanceVariable = "error"
+reportUnnecessaryTypeIgnoreComment = "error"
+reportUnusedCallResult = "none"  # too noisy
+
+# enable PEP 484 indication that a function parameter assigned a default value
+# of None is implicitly Optional
+strictParameterNoneValue = false
