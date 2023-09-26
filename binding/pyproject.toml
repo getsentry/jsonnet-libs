@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 packages = ["sentry_jsonnet", "typings"]
 
 [project]
+dynamic = ["dependencies"]
 name = "sentry-jsonnet"
 version = "0.0.1"
 description = "Sentry wrapper to the go-jsonnet library"
@@ -15,6 +16,9 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
 
 [tool.setuptools.package-data]
 typings = ["_jsonnet.pyi"]
