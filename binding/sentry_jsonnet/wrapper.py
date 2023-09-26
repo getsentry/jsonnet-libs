@@ -33,7 +33,6 @@ class unset:
     pass
 
 
-# Test
 # Returns contents if the file was successfully retrieved,
 # None if file not found, or throws an exception when the path is invalid or an
 # IO error occured.
