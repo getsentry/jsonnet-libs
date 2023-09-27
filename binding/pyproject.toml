@@ -40,7 +40,7 @@ add_imports=[
 ]
 
 [tool.pytest.ini_options]
-minversion = "6.0"
+minversion = "0.0.1"
 markers = ["slow_integration"]
 addopts = "--durations=3 -vv --doctest-modules"
 testpaths = ["."]
