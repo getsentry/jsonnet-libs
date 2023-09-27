@@ -1,4 +1,4 @@
-gojsonnet
+jsonnet
 pyright
 black
 flake8
