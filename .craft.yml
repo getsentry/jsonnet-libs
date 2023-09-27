@@ -3,6 +3,7 @@ github:
   owner: getsentry
   repo: jsonnet-libs
 changelogPolicy: auto
+preReleaseCommand: bash sbin/bump-version.sh
 targets:
   - name: github
   - name: pypi
