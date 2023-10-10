@@ -1,0 +1,17 @@
+name: CI for the sentry_jsonish package
+on:
+  push:
+    branches:
+      - main
+      - release-sentry_jsonish/**
+    paths:
+      - sentry_jsonish/**
+  pull_request:
+    paths:
+      - sentry_jsonish/**
+
+jobs:
+  ci:
+    uses: ./ci-reusable.yaml
+    with:
+      subdir: sentry_jsonish

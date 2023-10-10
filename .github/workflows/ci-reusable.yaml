@@ -1,0 +1,42 @@
+name: CI for a python package
+on:
+  workflow_call:
+    inputs: &inputs
+      subdir:
+        required: true
+        type: string
+  workflow_dispatch:
+    <<: *inputs
+
+defaults:
+  run:
+    # the default default is:
+    #      bash --noprofile --norc -eo pipefail {0}
+    shell: bash --noprofile --norc -eo pipefail -ux {0}
+    working-directory: ${{ inputs.subdir }}
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout code
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - run: make env
+      - name: Run linter
+        run: make lint
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 3
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout code
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - run: make env
+      - run: make test
