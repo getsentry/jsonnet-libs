@@ -12,6 +12,6 @@ on:
 
 jobs:
   ci:
-    uses: ./ci-reusable.yaml
+    uses: ./.github/workflows/ci-reusable.yaml
     with:
       subdir: sentry_jsonish
