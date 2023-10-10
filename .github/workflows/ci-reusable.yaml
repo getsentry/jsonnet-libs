@@ -27,6 +27,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: Checkout code
+      - uses: bukzor-sentryio/direnv-action@bukzor/path-input
+        with:
+          path: ${{ inputs.subdir }}
       - uses: actions/setup-python@v2
         with:
           python-version: 3.8
