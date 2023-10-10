@@ -9,7 +9,7 @@ exclude = ["test"]
 [project]
 dynamic = ["dependencies"]
 name = "sentry-jsonnet"
-version = "0.0.2"
+version = "0.0.0rc1"
 description = "Sentry wrapper to the go-jsonnet library"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -38,7 +38,7 @@ add_imports=[
 ]
 
 [tool.pytest.ini_options]
-minversion = "0.0.2"
+minversion = "0.0.0rc1"
 markers = ["slow_integration"]
 addopts = "--durations=3 -vv --doctest-modules"
 testpaths = ["."]
