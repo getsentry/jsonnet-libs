@@ -2,7 +2,10 @@
 venv := $(shell relpath $(VIRTUAL_ENV) $(CURDIR))
 
 .PHONY: all
-all: $(venv)
+all: env
+
+.PHONY: env
+env: $(venv)
 
 .PHONY: typecheck
 typecheck:
