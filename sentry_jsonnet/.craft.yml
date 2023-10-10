@@ -1,0 +1,17 @@
+minVersion: 0.34.1
+changelogPolicy: auto
+preReleaseCommand: bash sbin/bump-version.sh
+releaseBranchPrefix: release-sentry-jsonnet
+
+targets:
+  - name: pypi
+  - name: sentry-pypi
+    internalPypiRepo: getsentry/pypi
+
+requireNames:
+  - /^sentry_jsonnet-.*-py2\.py3-none-macosx_10_15_x86_64.whl$/
+  - /^sentry_jsonnet-.*-py2\.py3-none-macosx_11_0_arm64.whl$/
+  - /^sentry_jsonnet-.*-py2\.py3-none-.*manylinux2014_i686.*\.whl$/
+  - /^sentry_jsonnet-.*-py2\.py3-none-.*manylinux2014_x86_64.*\.whl$/
+  - /^sentry_jsonnet-.*-py2\.py3-none-.*manylinux2014_aarch64.*\.whl$/
+  - /^sentry_jsonnet-.*\.zip$/
