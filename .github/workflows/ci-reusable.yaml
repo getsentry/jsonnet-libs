@@ -35,7 +35,10 @@ jobs:
           python-version: 3.8
       - run: make env
       - name: Run linter
-        run: make lint
+        run: |
+          pip install pre-commit==2.13.0
+          pre-commit install --install-hooks
+          make lint
   test:
     defaults:
       run:
