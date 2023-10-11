@@ -1,4 +1,6 @@
-name: Release binding
+# TODO: This one and sentry_jsonnet are almost the same.
+# A reusable flow would help.
+name: Release sentry_jsonish
 
 on:
   workflow_dispatch:
@@ -19,6 +21,7 @@ jobs:
         with:
           token: ${{ secrets.GH_RELEASE_PAT }}
           fetch-depth: 0
+
       - name: Prepare release
         uses: getsentry/action-prepare-release@v1
         env:
@@ -26,3 +29,4 @@ jobs:
         with:
           version: ${{ github.event.inputs.version }}
           force: ${{ github.event.inputs.force }}
+          path: sentry_jsonish
