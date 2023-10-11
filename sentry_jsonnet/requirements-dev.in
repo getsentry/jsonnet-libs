@@ -1,3 +1,4 @@
 -r requirements.in
 pyright
 black
+pre-commit

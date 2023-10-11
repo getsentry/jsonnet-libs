@@ -36,7 +36,6 @@ jobs:
       - run: make env
       - name: Run linter
         run: |
-          pip install pre-commit==2.13.0
           pre-commit install --install-hooks
           make lint
   test:
