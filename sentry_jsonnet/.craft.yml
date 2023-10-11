@@ -4,7 +4,7 @@ github:
   owner: getsentry
   repo: jsonnet-libs
 changelogPolicy: auto
-preReleaseCommand: bash sbin/bump-version-jsonnet.sh
+preReleaseCommand: bash ../sbin/bump-version-jsonnet.sh
 releaseBranchPrefix: release-sentry-jsonnet
 targets:
   - name: pypi
