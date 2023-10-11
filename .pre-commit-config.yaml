@@ -8,6 +8,14 @@ repos:
     rev: 23.9.1
     hooks:
       - id: black
+        files: ^sentry_jsonnet/.+
+        args: [--config=./sentry_jsonnet/pyproject.toml]
+  - repo: https://github.com/psf/black
+    rev: 23.9.1
+    hooks:
+      - id: black
+        files: ^sentry_jsonnet/.+
+        args: [--config=./sentry_jsonnet/pyproject.toml]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
