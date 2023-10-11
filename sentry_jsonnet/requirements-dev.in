@@ -2,3 +2,4 @@
 pyright
 black
 pre-commit
+pytest
