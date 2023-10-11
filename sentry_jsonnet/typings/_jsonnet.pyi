@@ -1,4 +1,7 @@
-from typing import Any, Callable
+from __future__ import annotations
+
+from typing import Any
+from typing import Callable
 
 JsonnetSnippet = str
 VarName = str
