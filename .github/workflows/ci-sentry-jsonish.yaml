@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      - release-sentry_jsonish/**
+      - release-sentry-jsonish/**
     paths:
       - sentry_jsonish/**
   pull_request:
