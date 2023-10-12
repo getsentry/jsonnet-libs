@@ -9,4 +9,3 @@
 ### Various fixes & improvements
 
 - Fix .craft (#3) by @fpacifici
-

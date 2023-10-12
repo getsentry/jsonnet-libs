@@ -7,6 +7,14 @@ all: env
 .PHONY: env
 env: $(venv)
 
+.PHONY: lint
+lint: env
+	pre-commit run --all
+
+.PHONY: test
+test: env
+	pytest
+
 .PHONY: typecheck
 typecheck:
 	@set -x; PYTHONPATH=$(CURDIR)/src pyright --verifytypes sentry_jsonnet --outputjson

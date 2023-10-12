@@ -16,7 +16,7 @@
      * [ ] sentry-jsonnet
         * [x] pypi packaging exists
         * [ ] update to gojsonnet
-            * [ ] blocked by: figure out why our pypi GHA has no `go` 
+            * [ ] blocked by: figure out why our pypi GHA has no `go`
         * [ ] depends on sentry-jsonish
         * [ ] readme
      * [ ] test harness: jsonnet-tester
