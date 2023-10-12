@@ -29,7 +29,13 @@ repos:
       - id: check-xml
       - id: check-yaml
       - id: detect-private-key
-      - id: end-of-file-fixer
+      # Disable it to cut the first release of the libraries.
+      # Since we moved the changelog files, the new ones are empty
+      # but the first release is not 0.0.1.
+      # It seems Craft is not adding the newline as it does not
+      # figure out the release we try to cut is the first one.
+      # Once the first is cut we can add it back
+      # - id: end-of-file-fixer
       - id: trailing-whitespace
       - id: fix-encoding-pragma
         args: ["--remove"]
