@@ -9,7 +9,7 @@ from typing import Tuple
 from typing import TypeVar
 from typing import Union
 
-from jsonish import JSONish
+from sentry_jsonish import JSONish
 
 JsonnetSnippet = str
 VarName = str

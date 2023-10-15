@@ -1,5 +1,5 @@
 # $(venv): a short path to $VIRTUAL_ENV, just for better output readability
-venv := $(shell relpath $(VIRTUAL_ENV) $(CURDIR))
+venv := $(shell realpath $(VIRTUAL_ENV) $(CURDIR))
 
 .PHONY: all
 all: env
