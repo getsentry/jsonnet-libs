@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import Any
 
-from sentry_jsonnet.jsonish import JSONish
-from sentry_jsonnet.jsonish import recurse
+from sentry_jsonish import JSONish
+from sentry_jsonish import recurse
 
 
 def jsonish_lower(x: JSONish, _: Any):

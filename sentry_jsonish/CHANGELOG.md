@@ -10,4 +10,3 @@
 - Add changelog (#9) by @fpacifici
 - Reorganize release script for two projects (#8) by @fpacifici
 - in code review (fcbd96e4) by @bukzor
-

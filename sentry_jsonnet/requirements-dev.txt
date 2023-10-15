@@ -48,6 +48,8 @@ pytest==7.4.2
     # via -r requirements-dev.in
 pyyaml==6.0.1
     # via pre-commit
+sentry-jsonish==0.0.1
+    # via -r requirements.in
 tomli==2.0.1
     # via
     #   black
