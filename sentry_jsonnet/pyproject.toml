@@ -3,10 +3,6 @@
 requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools.packages.find]
-where = ["src"]
-exclude = ["test"]
-
 [project]
 dynamic = ["dependencies"]
 name = "sentry-jsonnet"
@@ -19,8 +15,17 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools]
+include-package-data = true
+
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.in"]}
+
+[tool.setuptools.package-data]
+sentry_jsonnet = ["py.typed"]
 
 [tool.black]
 line-length = 79
