@@ -141,10 +141,10 @@ def jsonnet(
     if native_callbacks is None:
         native_callbacks = {}
 
-    import _gojsonnet
+    import _jsonnet
 
     if src is None:
-        result = _gojsonnet.evaluate_file(
+        result = _jsonnet.evaluate_file(
             _filename,
             _jpathdir,  # XXX: unused when passing import_callback
             max_stack,
@@ -159,7 +159,7 @@ def jsonnet(
             native_callbacks,
         )
     else:
-        result = _gojsonnet.evaluate_snippet(
+        result = jsonnet.evaluate_snippet(
             _filename,
             src,
             _jpathdir,  # XXX: unused when passing import_callback
