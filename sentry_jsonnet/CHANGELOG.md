@@ -11,4 +11,3 @@
 - Reorganize release script for two projects (#8) by @fpacifici
 - feat(ci): first attempt at reusable ci workflows (#6) by @bukzor-sentryio
 - I "touched up" all the things, sorry. (41d2582d) by @bukzor
-
