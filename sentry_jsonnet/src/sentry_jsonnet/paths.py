@@ -16,6 +16,11 @@ class PathEntry(ABC):
 
     It is a class so that we can provide multiple sources types, like
     file system directories or python packages.
+
+    TODO: Consider changing the abstraction we rely on in the `jsonnet`
+    function. That is designed to obtain a path, it then load the content.
+    A better abstraction would be for the PathEntry to return the content,
+    though it requires changing the public callback interface.
     """
 
     @contextmanager
@@ -24,10 +29,8 @@ class PathEntry(ABC):
         self, local_path: Path
     ) -> Generator[Optional[Path], None, None]:
         """
-        Opens a file from the path represented by this object and returns the
-        content of the file if the file is present.
-
-        If the file is not present in this path, it returns None.
+        Yields a path object that the `jsonnet` function can use to load the
+        content.
         """
         raise NotImplementedError
 
@@ -57,11 +60,8 @@ class FilesystemPathEntry(PathEntry):
 
 class PythonPackagePathEntry(PathEntry):
     """
-    The traditional path entry that represents a directory on the file
-    system.
-
-    If a required file is a subpath of the one provided to initialize
-    this object it is returned.
+    This relies on `importlib.resources` to retrieve static resources from a
+    python package.
     """
 
     def __init__(self, root: Traversable, subdir: str = "") -> None:
