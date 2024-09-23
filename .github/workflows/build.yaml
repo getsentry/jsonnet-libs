@@ -1,0 +1,55 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+      - release-sentry-jsonish/**
+      - release-sentry-jsonnet/**
+
+jobs:
+  dist:
+    name: Create wheel and source distribution
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: "build sentry_jsonnet"
+        working-directory: ./sentry_jsonnet
+        run: |
+          pip install wheel
+          pip install build
+          python -m build --wheel
+
+      - name: "build sentry_jsonish"
+        working-directory: ./sentry_jsonish
+        run: |
+          pip install wheel
+          pip install build
+          python -m build --wheel
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: artifact-jsonnet
+          path: sentry_jsonnet/dist/*
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: artifact-jsonish
+          path: sentry_jsonish/dist/*
+
+  merge:
+    name: Create Release Artifact
+    runs-on: ubuntu-latest
+    needs: [dist]
+    steps:
+      - uses: actions/upload-artifact/merge@v4
+        with:
+          # Craft expects release assets from github to be a single artifact named after the sha.
+          name: ${{ github.sha }}
+          pattern: artifact-*
+          delete-merged: true
