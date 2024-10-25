@@ -1,2 +1,2 @@
-git+https://github.com/getsentry/sentry-forked-jsonnet/@ba46b32cc07a64b4cab043816efd69eff9c3e9ae
+sentry-forked-jsonnet==0.20.0.post4
 sentry-jsonish
