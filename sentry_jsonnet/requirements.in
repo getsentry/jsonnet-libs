@@ -1,2 +1,2 @@
-jsonnet
+sentry-forked-jsonnet==0.20.0.post4
 sentry-jsonish

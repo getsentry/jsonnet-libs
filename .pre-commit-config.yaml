@@ -37,7 +37,7 @@ repos:
     rev: 6.1.0
     hooks:
       - id: flake8
-        language_version: python3.8
+        language_version: python3.11
   # There is a number of typing issue to fix.
   # Will fix separately and then re-enable
   #- repo: https://github.com/necaris/pre-commit-pyright
@@ -46,4 +46,4 @@ repos:
   #    - id: pyright
   #      files: ^binding/.+
 default_language_version:
-  python: python3.8
+  python: python3.11
