@@ -9,7 +9,7 @@ name = "sentry_jsonish"
 version = "0.0.2"
 description = "Sentry wrapper to the go-jsonnet library"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.11"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
@@ -89,7 +89,7 @@ extraPaths = [
 ]
 
 pythonPlatform = "Linux"
-pythonVersion = "3.8"
+pythonVersion = "3.11"
 
 typeCheckingMode = "strict"
 

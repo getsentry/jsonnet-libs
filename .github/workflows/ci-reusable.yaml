@@ -32,7 +32,7 @@ jobs:
           path: ${{ inputs.subdir }}
       - uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.11
       - run: make env
       - name: Run linter
         run: |
@@ -53,7 +53,7 @@ jobs:
           path: ${{ inputs.subdir }}
       - uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.11
       - run: make env
       # The environment is ok now. Test fail in jsonish because,
       # well, there are no tests to run, while they fail in
