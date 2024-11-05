@@ -111,7 +111,9 @@ def jsonnet(
     native_callbacks: dict[
         str, tuple[tuple[str, ...], Callable[..., Any]]
     ] = None,
-    ext_packages: Sequence[Path | str] = (), # Paths for any additional ext packages containing resources
+    ext_packages: Sequence[
+        Path | str
+    ] = (),  # Paths for any additional ext packages containing resources.
 ) -> JSONish:
     if base_dir is None:
         # this choice of default base_dir makes all paths source-relative
