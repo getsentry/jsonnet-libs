@@ -126,7 +126,9 @@ def jsonnet(
     _filename = str(base_dir / filename)
 
     import_paths = [base_dir / path for path in import_paths]
-    import_packages = [path for path in ext_packages]
+    import_packages = [
+        path for path in ext_packages
+    ]  # we can't concatenate import package paths to base_dir
     import_paths.extend(import_packages)
     _jpathdir = [str(path) for path in import_paths]
 
