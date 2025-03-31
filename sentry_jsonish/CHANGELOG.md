@@ -6,7 +6,7 @@
 - release: 0.0.1 (2ca0326d) by @getsentry-bot
 - Fix branch name (#18) by @fpacifici
 - Touch readmes (#14) by @fpacifici
-- Fix CI for both libraries (#7) by @bukzor-sentryio
+- Fix CI for both libraries (#7) by @bukzor
 - Fix the path of bump version (#12) by @fpacifici
 - Fix craft path (#10) by @fpacifici
 - Add changelog (#9) by @fpacifici
@@ -19,7 +19,7 @@
 
 - Fix branch name (#18) by @fpacifici
 - Touch readmes (#14) by @fpacifici
-- Fix CI for both libraries (#7) by @bukzor-sentryio
+- Fix CI for both libraries (#7) by @bukzor
 - Fix the path of bump version (#12) by @fpacifici
 - Fix craft path (#10) by @fpacifici
 - Add changelog (#9) by @fpacifici
