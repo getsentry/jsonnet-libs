@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: Checkout code
-      - uses: bukzor/direnv-action@bukzor/path-input
+      - uses: bukzor/direnv-action@00000000000000 # bukzor/path-input
         with:
           path: ${{ inputs.subdir }}
       - uses: actions/setup-python@v2
@@ -48,7 +48,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: Checkout code
-      - uses: bukzor/direnv-action@bukzor/path-input
+      - uses: bukzor/direnv-action@00000000000000 # bukzor/path-input
         with:
           path: ${{ inputs.subdir }}
       - uses: actions/setup-python@v2
