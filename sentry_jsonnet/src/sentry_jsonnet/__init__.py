@@ -3,24 +3,24 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 from typing import Callable
-from typing import Dict
+from typing import MutableSequence
 from typing import Sequence
-from typing import Tuple
 from typing import TypeVar
-from typing import Union
 
 from sentry_jsonish import JSONish
+
+from sentry_jsonnet.callbacks import ImportCallback
+from sentry_jsonnet.callbacks import JsonnetImportCallback
+from sentry_jsonnet.callbacks import default_import_callback
+from sentry_jsonnet.callbacks import pathlib_import_callback
+from sentry_jsonnet.paths import FilesystemPathEntry
+from sentry_jsonnet.paths import PathEntry
 
 JsonnetSnippet = str
 VarName = str
 BaseDir = Path
 AbsPath = Path
 T = TypeVar("T")
-
-ImportCache = Dict[Path, Union[bytes, None]]
-ImportCallback = Callable[[Path], Union[str, bytes, None]]
-# jsonnet cpython binding requires this more complex signature
-_ImportCallback = Callable[[str, str], Tuple[str, Union[bytes, None]]]
 
 
 def _getframe(back: int):
@@ -29,76 +29,12 @@ def _getframe(back: int):
     return sys._getframe(back)  # pyright: ignore [reportPrivateUsage]
 
 
-class unset:
-    pass
-
-
-# Returns contents if the file was successfully retrieved,
-# None if file not found, or throws an exception when the path is invalid or an
-# IO error occured.
-def default_import_callback(module: Path):
-    if module.is_file():
-        content = module.read_text()
-    elif module.exists():
-        raise RuntimeError("Attempted to import a directory")
-    else:  # cache the import-path miss
-        content = None
-    return content
-
-
-def _adapt_import_callback(
-    cache: ImportCache, import_callback: ImportCallback, path: Path
-) -> tuple[str, bytes | None]:
-    _source = cache.get(path, unset())
-    if isinstance(_source, unset):
-        source = import_callback(path)
-        if isinstance(source, str):
-            _source = source.encode("utf-8")
-        else:
-            _source = source
-        cache[path] = _source
-
-    return str(path), _source
-
-
-# It caches both hits and misses in the `cache` dict. Exceptions
-# do not need to be cached, because they abort the computation anyway.
-def _caching_adapted_import_callback(
-    import_paths: Sequence[Path], import_callback: ImportCallback
-) -> _ImportCallback:
-    from functools import wraps
-
-    cache: ImportCache = {}
-
-    @wraps(import_callback)
-    def _import_callback(
-        _base_dir: str, _path: str
-    ) -> tuple[str, bytes | None]:
-        path_tried1, content1 = _adapt_import_callback(
-            cache, import_callback, Path(_base_dir) / _path
-        )
-        if content1 is not None:
-            return path_tried1, content1
-
-        path = Path(_path)
-        for import_path in import_paths:
-            path_tried2, content2 = _adapt_import_callback(
-                cache, import_callback, import_path / path
-            )
-            if content2 is not None:
-                return path_tried2, content2
-
-        return path_tried1, content1
-
-    return _import_callback
-
-
 def jsonnet(
     filename: Path | str,
     src: JsonnetSnippet = None,
     base_dir: AbsPath | str = None,
     caller_frame: int = 1,
-    import_paths: Sequence[Path | str] = (),
+    import_paths: Sequence[Path | str | PathEntry] = (),
     max_stack: int = 500,
     gc_min_objects: int = 1000,
     gc_growth_trigger: float = 2,
@@ -122,6 +58,13 @@ def jsonnet(
 
     _filename = str(base_dir / filename)
 
+    paths: MutableSequence[PathEntry] = []
+    for path in import_paths:
+        if isinstance(path, PathEntry):
+            paths.append(path)
+        else:
+            paths.append(FilesystemPathEntry(Path(path)))
+
     import_paths = [base_dir / path for path in import_paths]
     _jpathdir = [str(path) for path in import_paths]
 
@@ -134,8 +77,8 @@ def jsonnet(
     if tla_codes is None:
         tla_codes = {}
 
-    _import_callback: _ImportCallback = _caching_adapted_import_callback(
-        import_paths, import_callback
+    _import_callback: JsonnetImportCallback = pathlib_import_callback(
+        paths, import_callback
     )
 
     if native_callbacks is None:
