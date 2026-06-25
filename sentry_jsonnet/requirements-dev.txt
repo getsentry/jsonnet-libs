@@ -4,7 +4,7 @@
 #
 #    pip-compile --output-file=requirements-dev.txt --strip-extras requirements-dev.in
 #
-black==23.9.1
+black==26.3.1
     # via -r requirements-dev.in
 cfgv==3.4.0
     # via pre-commit
@@ -28,7 +28,7 @@ packaging==23.1
     # via
     #   black
     #   pytest
-pathspec==0.11.2
+pathspec==1.1.1
     # via black
 platformdirs==3.10.0
     # via
@@ -42,6 +42,8 @@ pyright==1.1.328
     # via -r requirements-dev.in
 pytest==7.4.2
     # via -r requirements-dev.in
+pytokens==0.4.1
+    # via black
 pyyaml==6.0.1
     # via pre-commit
 sentry-forked-jsonnet==0.20.0.post4
