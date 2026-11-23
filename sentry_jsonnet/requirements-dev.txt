@@ -10,10 +10,12 @@ cfgv==3.4.0
     # via pre-commit
 click==8.1.7
     # via black
-distlib==0.3.7
+distlib==0.4.4
     # via virtualenv
-filelock==3.12.4
-    # via virtualenv
+filelock==4.3.0
+    # via
+    #   python-discovery
+    #   virtualenv
 identify==2.5.30
     # via pre-commit
 iniconfig==2.0.0
@@ -24,13 +26,13 @@ nodeenv==1.8.0
     # via
     #   pre-commit
     #   pyright
-packaging==23.1
+packaging==26.3
     # via
     #   black
     #   pytest
 pathspec==1.1.1
     # via black
-platformdirs==3.10.0
+platformdirs==4.14.8
     # via
     #   black
     #   virtualenv
@@ -42,6 +44,8 @@ pyright==1.1.328
     # via -r requirements-dev.in
 pytest==7.4.2
     # via -r requirements-dev.in
+python-discovery==1.9.6
+    # via virtualenv
 pytokens==0.4.1
     # via black
 pyyaml==6.0.1
@@ -50,7 +54,7 @@ sentry-forked-jsonnet==0.20.0.post4
     # via -r requirements.in
 sentry-jsonish==0.0.2
     # via -r requirements.in
-virtualenv==20.24.5
+virtualenv==21.14.13
     # via pre-commit
 
 # The following packages are considered to be unsafe in a requirements file:
