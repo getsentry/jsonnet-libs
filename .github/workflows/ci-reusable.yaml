@@ -27,9 +27,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: Checkout code
-      - uses: HatsuneMiku3939/direnv-action@be141d0ba5b8fecd849a166ff5a9e0b482582175 # v1.4.11
-        with:
-          path: ${{ inputs.subdir }}
+      - name: Set up environment (mirrors .envrc)
+        run: |
+          echo "VIRTUAL_ENV=$PWD/.venv" >> "$GITHUB_ENV"
+          echo "$GITHUB_WORKSPACE/sbin" >> "$GITHUB_PATH"
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
       - uses: actions/setup-python@v2
         with:
           python-version: 3.11
@@ -48,9 +50,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: Checkout code
-      - uses: HatsuneMiku3939/direnv-action@be141d0ba5b8fecd849a166ff5a9e0b482582175 # v1.4.11
-        with:
-          path: ${{ inputs.subdir }}
+      - name: Set up environment (mirrors .envrc)
+        run: |
+          echo "VIRTUAL_ENV=$PWD/.venv" >> "$GITHUB_ENV"
+          echo "$GITHUB_WORKSPACE/sbin" >> "$GITHUB_PATH"
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
       - uses: actions/setup-python@v2
         with:
           python-version: 3.11
